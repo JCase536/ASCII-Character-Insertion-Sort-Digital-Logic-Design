@@ -1,0 +1,23 @@
+
+
+module test_sort_step_select;
+	reg St, CLK;
+	wire [1:0] C;
+
+	sort_step_select sort_select (St, CLK, C);
+
+	initial begin
+		CLK = 0;
+		St = 0;
+		#200;
+
+		St = 1;
+		#300;
+
+		St = 0;
+	end
+
+	always begin
+		#50 CLK = ~CLK;
+	end
+endmodule

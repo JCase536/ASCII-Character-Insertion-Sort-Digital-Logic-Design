@@ -1,0 +1,15 @@
+
+module comparator(input reg St, CLK, input reg [7:0] X, Y, output G);
+	reg D1, D0;
+	wire R, x, y;
+	assign G = D1;
+	bit_select b_s (St, CLK, X, Y, R, x, y);
+	initial begin
+		D1 <= 0;
+		D0 <= 1;
+	end
+	always @(posedge CLK) begin
+		D1 <= (~R&D1) | (~R&x&~y&D0);
+		D0 <= (R|D0) & (R|~y|D1);
+	end
+endmodule
